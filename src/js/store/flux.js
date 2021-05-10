@@ -12,17 +12,42 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			personajes: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
+			loadSomeData: async () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+                */
+
+				//Traigo los personajes
+				const resPersonajes = await (await fetch("https://www.swapi.tech/api/people")).json();
+				const dataPersonajes = await resPersonajes.results;
+				let personajesFull = [];
+				await dataPersonajes.map(async item => {
+					let url = "https://www.swapi.tech/api/people/" + item.uid;
+					const resDetalle = await (await fetch(url)).json();
+					const dataDetalle = await resDetalle.result;
+					console.log(dataDetalle);
+					let objPersonaje = {
+						id: item.uid,
+						name: item.name,
+						description: dataDetalle.description,
+						detalle: dataDetalle.properties
+					};
+					personajesFull.push(objPersonaje);
+					return objPersonaje;
+				});
+
+				setStore({ personajes: personajesFull });
+				console.log("Objeto Personaje", personajesFull);
+
+				//console.log(data);
 			},
 			changeColor: (index, color) => {
 				//get the store
