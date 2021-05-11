@@ -10,9 +10,9 @@ const Card = props => {
 				<div className="card-body">
 					<h4 className="card-title">{props.name}</h4>
 					<p className="card-text">
-						Gender: male <br />
-						Hair Color: none <br />
-						Eye-Color: yellow
+						Gender: {props.gender} <br />
+						Hair Color: {props.haircolor} <br />
+						Eye-Color: {props.eyecolor}
 					</p>
 					<Link to={"/single/" + props.id}>
 						<button type="button" className="btn btn-outline-primary btn-lg">
@@ -32,5 +32,8 @@ export default Card;
 
 Card.propTypes = {
 	name: PropTypes.string,
-	id: PropTypes.number
+	id: PropTypes.number,
+	gender: PropTypes.string,
+	haircolor: PropTypes.string,
+	eyecolor: PropTypes.string
 };

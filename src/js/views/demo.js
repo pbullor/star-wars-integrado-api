@@ -14,7 +14,13 @@ export const Demo = () => {
 				{store.personajes.map((item, index) => {
 					return (
 						<div className="col-lg-4 mb-5" key={index}>
-							<Card id={index} name={item.name} />
+							<Card
+								id={index}
+								name={item.name}
+								gender={item.detalle.gender}
+								eyecolor={item.detalle.eye_color}
+								haircolor={item.detalle.hair_color}
+							/>
 						</div>
 					);
 				})}
