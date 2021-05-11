@@ -9,6 +9,7 @@ export const Demo = () => {
 
 	return (
 		<div className="container">
+            <h1 className="text-danger m-2">Character</h1>
 			<div className="row d-flex-row flex-nowrap overflow-auto mt-3">
 				{store.personajes.map((item, index) => {
 					return (

@@ -4,15 +4,20 @@ const Card = () => {
 	return (
 		<div>
 			<div className="card">
-				<img className="card-img-top" src="..." alt="Card image cap" />
+				<img src="http://www.servithermic.cl/images/400X200.gif" className="card-img-top" alt="..." />
 				<div className="card-body">
-					<h5 className="card-title">Card title</h5>
+					<h4 className="card-title">Darth Vader</h4>
 					<p className="card-text">
-						Some quick example text to build on the card title and make up the bulk of the cards content.
+						Gender: male <br />
+						Hair Color: none <br />
+						Eye-Color: yellow
 					</p>
-					<a href="#" className="btn btn-primary">
-						Go somewhere
-					</a>
+					<button type="button" className="btn btn-outline-primary btn-lg">
+						Learn more!
+					</button>
+					<button type="button" className="btn btn-outline-warning btn-lg float-right">
+						<i className="fas fa-heart" />
+					</button>
 				</div>
 			</div>
 		</div>
