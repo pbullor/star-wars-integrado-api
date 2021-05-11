@@ -21,33 +21,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: async () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-                */
-
-				//Traigo los personajes
 				const resPersonajes = await (await fetch("https://www.swapi.tech/api/people")).json();
 				const dataPersonajes = await resPersonajes.results;
-				let personajesFull = [];
-				await dataPersonajes.map(async item => {
-					let url = "https://www.swapi.tech/api/people/" + item.uid;
+				const store = getStore();
+				console.log("data personajes", dataPersonajes);
+
+				for (let i = 0; i < dataPersonajes.length; i++) {
+					let url = dataPersonajes[i].url;
 					const resDetalle = await (await fetch(url)).json();
 					const dataDetalle = await resDetalle.result;
 					console.log(dataDetalle);
 					let objPersonaje = {
-						id: item.uid,
-						name: item.name,
+						id: dataPersonajes[i].uid,
+						name: dataPersonajes[i].name,
 						description: dataDetalle.description,
 						detalle: dataDetalle.properties
 					};
-					personajesFull.push(objPersonaje);
-					return objPersonaje;
-				});
-
-				setStore({ personajes: personajesFull });
-				console.log("Objeto Personaje", personajesFull);
-
-				//console.log(data);
+					setStore({ personajes: [...store.personajes, objPersonaje] });
+				}
 			},
 			changeColor: (index, color) => {
 				//get the store

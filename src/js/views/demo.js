@@ -9,12 +9,12 @@ export const Demo = () => {
 
 	return (
 		<div className="container">
-            <h1 className="text-danger m-2">Character</h1>
+			<h1 className="text-danger m-2">Character</h1>
 			<div className="row d-flex-row flex-nowrap overflow-auto mt-3">
 				{store.personajes.map((item, index) => {
 					return (
 						<div className="col-lg-4 mb-5" key={index}>
-							<Card />
+							<Card id={index} name={item.name} />
 						</div>
 					);
 				})}
